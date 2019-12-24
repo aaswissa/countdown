@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { render } from '@testing-library/react';
+import Counter from './comps/counter';
+import UserInput from './comps/userinput';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends Component {
+  state = {myDate:'2022-05-05'}
+
+  changeDateByDad = (_val) => {
+    // this.state.myDate = '2075-01-01';
+    // this.forceUpdate(); not good for mem
+    this.setState({myDate:_val});
+  }
+  
+  render(){
+    return (  
+      <div className="App">
+        
+        <Counter myAppDate={this.state.myDate}></Counter>
+        <UserInput changeDateByChild={this.changeDateByDad}></UserInput>
+      </div>
+  
+  
+    );
+  }
+
 }
 
 export default App;
